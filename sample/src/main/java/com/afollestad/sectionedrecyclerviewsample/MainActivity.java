@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
                 getResources().getInteger(R.integer.grid_span));
         list.setLayoutManager(manager);
         adapter.setLayoutManager(manager);
+        adapter.setHasStableIds(true);
         list.setAdapter(adapter);
     }
 }

@@ -116,6 +116,31 @@ public abstract class SectionedRecyclerViewAdapter<VH extends RecyclerView.ViewH
         }
     }
 
+    public long getHeaderItemId(int section) {
+        return -1;
+    }
+
+    public long getItemId(int section, int relativePosition, int absolutePosition) {
+        return -1;
+    }
+
+    /**
+     * @hide
+     * @deprecated
+     */
+    @Override
+    public long getItemId(int position) {
+        if (isHeader(position)) {
+            return getHeaderItemId(mHeaderLocationMap.get(position));
+        } else {
+            final int[] sectionAndPos = getSectionIndexAndRelativePosition(position);
+            return getItemId(sectionAndPos[0],
+                    // offset section view positions
+                    sectionAndPos[1],
+                    position - (sectionAndPos[0] + 1));
+        }
+    }
+
     @SuppressWarnings("UnusedParameters")
     @IntRange(from = 0, to = Integer.MAX_VALUE)
     public int getHeaderViewType(int section) {

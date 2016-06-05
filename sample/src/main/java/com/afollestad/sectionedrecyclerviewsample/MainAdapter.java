@@ -12,6 +12,15 @@ import com.afollestad.sectionedrecyclerview.SectionedRecyclerViewAdapter;
  * @author Aidan Follestad (afollestad)
  */
 public class MainAdapter extends SectionedRecyclerViewAdapter<MainAdapter.MainVH> {
+    @Override
+    public long getHeaderItemId(int section) {
+        return 'H' + section;
+    }
+
+    @Override
+    public long getItemId(int section, int relativePosition, int absolutePosition) {
+        return 'I' + section + relativePosition;
+    }
 
     @Override
     public int getSectionCount() {
